@@ -33,7 +33,8 @@ Homepage = "https://github.com/1Git2Clone/boorusama-qt"
 Repository = "https://github.com/1Git2Clone/boorusama-qt"
 Issues = "https://github.com/1Git2Clone/boorusama-qt/issues"
 
-[project.scripts]
+# GUI entry point: on Windows this launches via pythonw (no console window).
+[project.gui-scripts]
 boorusama-qt = "boorusama.app:run"
 
 [tool.hatch.version]
@@ -43,7 +44,7 @@ path = "boorusama/__init__.py"
 packages = ["boorusama"]
 
 [tool.hatch.build.targets.sdist]
-include = ["boorusama", "main.py", "README.md", "LICENSE", "requirements.txt"]
+include = ["boorusama", "main.py", "README.md", "LICENSE"]
 
 [tool.ruff]
 target-version = "py311"

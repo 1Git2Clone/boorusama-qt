@@ -16,11 +16,11 @@ It's a multi-backend image-board browser with a pluggable engine architecture:
 adding a new booru is a single module (or, for many sites, just a config
 profile).
 
-![Boorusama-Qt browsing Danbooru](docs/screenshot.png)
+![Boorusama-Qt browsing Danbooru](https://raw.githubusercontent.com/1Git2Clone/boorusama-qt/main/docs/screenshot.png)
 
 *Browse view — infinite-scroll grid with tag search.*
 
-![Boorusama-Qt post viewer](docs/viewer.png)
+![Boorusama-Qt post viewer](https://raw.githubusercontent.com/1Git2Clone/boorusama-qt/main/docs/viewer.png)
 
 *Post viewer — full image with category-grouped, clickable tags and metadata.*
 
@@ -88,7 +88,7 @@ uv run python main.py
 
 # …or a classic venv
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+pip install -e .
 python main.py
 ```
 
@@ -141,7 +141,8 @@ decorate it with `@register_engine`.
 ## Development
 
 This project uses [`uv`](https://docs.astral.sh/uv/) for everything; see
-[CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
+[CONTRIBUTING.md](https://github.com/1Git2Clone/boorusama-qt/blob/main/CONTRIBUTING.md)
+for the full guide.
 
 ### Git hooks
 
@@ -205,4 +206,4 @@ the major feature surfaces. It is not affiliated with the original project.
 ## License
 
 Released under the **GNU General Public License v3.0 or later** — see
-[`LICENSE`](LICENSE).
+[`LICENSE`](https://github.com/1Git2Clone/boorusama-qt/blob/main/LICENSE).
