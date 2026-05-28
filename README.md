@@ -1,5 +1,13 @@
 # Boorusama-Qt
 
+[![CI](https://github.com/1Git2Clone/boorusama-qt/actions/workflows/ci.yml/badge.svg)](https://github.com/1Git2Clone/boorusama-qt/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/1Git2Clone/boorusama-qt?logo=github&color=blue)](https://github.com/1Git2Clone/boorusama-qt/releases/latest)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?logo=gnu)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Qt for Python](https://img.shields.io/badge/Qt%20for%20Python-PySide6-41CD52?logo=qt&logoColor=white)](https://doc.qt.io/qtforpython/)
+[![Linter: Ruff](https://img.shields.io/badge/lint-ruff-261230?logo=ruff&logoColor=white)](https://github.com/astral-sh/ruff)
+[![Checked with pyright](https://img.shields.io/badge/types-pyright-0a7bbb?logo=python&logoColor=white)](https://github.com/microsoft/pyright)
+
 A desktop reimplementation of [Boorusama](https://github.com/khoadng/Boorusama)
 (the Flutter booru client) built with **Qt for Python (PySide6)** instead of
 Flutter/Dart.
