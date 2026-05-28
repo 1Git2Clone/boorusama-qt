@@ -45,6 +45,18 @@ QT_QPA_PLATFORM=offscreen uv run python scripts/ci_smoke.py
 If you touch UI behavior, also do a manual pass by running the app and
 exercising the affected flow (search, viewer, favorites, downloads, etc.).
 
+### Git hooks (recommended)
+
+Enable the bundled hooks once per clone so these gates run automatically:
+
+```bash
+git config core.hooksPath .githooks    # or: sh scripts/setup-hooks.sh
+```
+
+`pre-commit` runs ruff (lint + format check); `pre-push` runs the full gate
+(ruff, pyright, smoke test) and aborts the push if anything fails. Bypass with
+`--no-verify` when you really need to.
+
 ## Project layout
 
 See the [Architecture section of the README](README.md#architecture) for the

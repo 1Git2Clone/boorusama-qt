@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+# Fast pre-commit gate: lint + formatting. Bypass with `git commit --no-verify`.
+# Enable with: git config core.hooksPath .githooks   (see README → Development)
+set -e
+
+if ! command -v uvx >/dev/null 2>&1; then
+    echo "pre-commit: 'uv' not found — install https://docs.astral.sh/uv/ or use --no-verify." >&2
+    exit 1
+fi
+
+echo "pre-commit • ruff check"
+uvx ruff check .
+echo "pre-commit • ruff format --check"
+uvx ruff format --check .
+echo "pre-commit • OK"

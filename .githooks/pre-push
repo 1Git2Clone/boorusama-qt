@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+# Pre-push gate: the full CI-equivalent checks, run locally before anything
+# leaves your machine — the local stand-in for branch protection. A failing
+# gate aborts the push. Bypass in an emergency with `git push --no-verify`.
+# Enable with: git config core.hooksPath .githooks   (see README → Development)
+set -e
+
+if ! command -v uv >/dev/null 2>&1; then
+    echo "pre-push: 'uv' not found — install https://docs.astral.sh/uv/ or use --no-verify." >&2
+    exit 1
+fi
+
+echo "pre-push • ruff check"
+uvx ruff check .
+echo "pre-push • ruff format --check"
+uvx ruff format --check .
+echo "pre-push • pyright"
+uv run --with pyright pyright
+echo "pre-push • smoke test (offscreen Qt)"
+QT_QPA_PLATFORM=offscreen uv run python scripts/ci_smoke.py
+echo "pre-push • OK"

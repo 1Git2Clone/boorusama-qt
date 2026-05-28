@@ -24,6 +24,24 @@ profile).
 
 *Post viewer — full image with category-grouped, clickable tags and metadata.*
 
+## Table of contents
+
+- [Boorusama-Qt](#boorusama-qt)
+  - [Features](#features)
+  - [Install & run](#install--run)
+    - [From a release package](#from-a-release-package)
+    - [From source](#from-source)
+    - [Build the packages yourself](#build-the-packages-yourself)
+  - [Architecture](#architecture)
+    - [Adding a new booru](#adding-a-new-booru)
+  - [Development](#development)
+    - [Git hooks](#git-hooks)
+    - [Quality gates](#quality-gates)
+  - [Notes on backends](#notes-on-backends)
+  - [Keyboard & mouse](#keyboard--mouse)
+  - [Status](#status)
+  - [License](#license)
+
 ## Features
 
 - 🔌 **Pluggable engines** — Danbooru, Gelbooru, and a config-driven *generic*
@@ -119,6 +137,37 @@ For Danbooru/moebooru/Gelbooru-shaped JSON APIs, add a profile to
 `config.py`. For anything bespoke, subclass `BooruEngine`, implement
 `search_posts` (and optionally `autocomplete_tags`, `search_pools`, …), and
 decorate it with `@register_engine`.
+
+## Development
+
+This project uses [`uv`](https://docs.astral.sh/uv/) for everything; see
+[CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
+
+### Git hooks
+
+The repo ships hooks under `.githooks/`. Enable them once per clone:
+
+```bash
+git config core.hooksPath .githooks    # or: sh scripts/setup-hooks.sh
+```
+
+- **pre-commit** — runs `ruff check` and `ruff format --check` (fast).
+- **pre-push** — runs the full CI-equivalent gate before anything leaves your
+  machine: `ruff` lint + format, `pyright`, and the headless smoke test. This is
+  the local stand-in for branch protection — a failing gate aborts the push.
+
+Bypass in an emergency with `git commit --no-verify` / `git push --no-verify`.
+
+### Quality gates
+
+The same checks the hooks and CI run, to invoke by hand:
+
+```bash
+uvx ruff check .                                        # lint
+uvx ruff format --check .                                # formatting (drop --check to fix)
+uv run --with pyright pyright                            # type check
+QT_QPA_PLATFORM=offscreen uv run python scripts/ci_smoke.py   # headless smoke test
+```
 
 ## Notes on backends
 
