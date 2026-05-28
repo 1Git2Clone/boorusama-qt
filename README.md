@@ -27,14 +27,42 @@ profile).
 
 ## Install & run
 
+Requires Python 3.11+ (PySide6 6.6+ is pulled in automatically).
+
+### From a release package
+
+Grab the wheel from the [latest release](https://github.com/1Git2Clone/boorusama-qt/releases/latest), then:
+
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+# with uv (recommended) — installs an isolated `boorusama-qt` command
+uv tool install ./boorusama_qt-0.1.0-py3-none-any.whl
+boorusama-qt
+
+# …or into an environment with pip
+pip install ./boorusama_qt-0.1.0-py3-none-any.whl
+boorusama-qt
+```
+
+### From source
+
+```bash
+git clone https://github.com/1Git2Clone/boorusama-qt
+cd boorusama-qt
+
+# with uv
+uv run python main.py
+
+# …or a classic venv
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python main.py
 ```
 
-Requires Python 3.11+ and PySide6 6.6+.
+### Build the packages yourself
+
+```bash
+uv build          # → dist/boorusama_qt-*.whl and *.tar.gz
+```
 
 ## Architecture
 
@@ -86,15 +114,30 @@ decorate it with `@register_engine`.
   API even for reads. Add credentials under **Settings → Sources & Login**;
   errors otherwise surface in the status bar.
 
-## Keyboard shortcuts (viewer)
+## Keyboard & mouse
+
+In the post viewer:
 
 | Key            | Action            |
 |----------------|-------------------|
-| `←` / `→`      | Previous / next   |
+| `←` / `→`      | Previous / next post |
 | `F`            | Toggle favorite   |
 | `Esc`          | Back to grid      |
+
+Browser-style history (anywhere) — moves through searches, pools, opened posts,
+and sidebar pages:
+
+| Input                          | Action  |
+|--------------------------------|---------|
+| Mouse Back (button 4) / `Alt`+`←` | Back    |
+| Mouse Forward (button 5) / `Alt`+`→` | Forward |
 
 ## Status
 
 This is a faithful but from-scratch port focused on the core Boorusama loop and
 the major feature surfaces. It is not affiliated with the original project.
+
+## License
+
+Released under the **GNU General Public License v3.0 or later** — see
+[`LICENSE`](LICENSE).
