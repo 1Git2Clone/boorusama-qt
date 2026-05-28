@@ -115,8 +115,19 @@ class DanbooruEngine(BooruEngine):
         return [self._parse_pool(item) for item in data]
 
     def get_pool_posts(self, pool: Pool, page: int = 1, limit: int = 40) -> list[Post]:
-        # Use the pool: metatag with custom ordering so posts come back in pool order.
-        params = {"tags": f"pool:{pool.id} order:custom", "limit": limit, "page": page}
+        # Page through the pool's own ordered id list. Danbooru's `order:custom`
+        # only honors order when paired with an explicit `id:` list (a bare
+        # `pool:<id> order:custom` returns nothing), so we slice post_ids per page
+        # and fetch exactly those, preserving pool order. `id:` + `order:custom`
+        # counts as two tags, within the anonymous search-tag limit.
+        if not pool.post_ids:
+            return []
+        start = (page - 1) * limit
+        ids = pool.post_ids[start : start + limit]
+        if not ids:
+            return []
+        id_list = ",".join(str(i) for i in ids)
+        params = {"tags": f"id:{id_list} order:custom", "limit": len(ids)}
         params.update(self._auth_params())
         resp = self.client.get("/posts.json", params=params)
         resp.raise_for_status()
