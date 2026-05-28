@@ -55,13 +55,13 @@ class MainWindow(QMainWindow):
         # Browse/search state.
         self._query = ""
         self._page = 1
-        self._mode = "search"        # "search" | "pool"
+        self._mode = "search"  # "search" | "pool"
         self._active_pool: Pool | None = None
 
         # Browser-style navigation history (back/forward).
         self._history: list[NavSnapshot] = []
         self._hist_pos = -1
-        self._navigating = False     # guard: don't push while restoring
+        self._navigating = False  # guard: don't push while restoring
 
         central = QWidget()
         self.setCentralWidget(central)
@@ -163,37 +163,43 @@ class MainWindow(QMainWindow):
         self.browse_grid = PostGrid(self.context)
         self.browse_grid.post_clicked.connect(self._open_viewer_from_browse)
         self.browse_grid.load_more.connect(self._load_more)
-        self.stack.addWidget(self.browse_grid)          # index 0
+        self.stack.addWidget(self.browse_grid)  # index 0
 
         # Favorites.
         self.favorites_page = FavoritesPage(self.context)
         self.favorites_page.post_clicked.connect(self._open_viewer)
-        self.stack.addWidget(self.favorites_page)        # 1
+        self.stack.addWidget(self.favorites_page)  # 1
 
         # Pools.
         self.pools_page = PoolsPage(self.context)
         self.pools_page.pool_selected.connect(self._open_pool)
-        self.stack.addWidget(self.pools_page)            # 2
+        self.stack.addWidget(self.pools_page)  # 2
 
         # History.
         self.history_page = HistoryPage(self.context)
         self.history_page.search_requested.connect(self._search_from_history)
-        self.stack.addWidget(self.history_page)          # 3
+        self.stack.addWidget(self.history_page)  # 3
 
         # Downloads.
         self.downloads_page = DownloadsPage(self.context)
-        self.stack.addWidget(self.downloads_page)        # 4
+        self.stack.addWidget(self.downloads_page)  # 4
 
         # Viewer.
         self.viewer = PostViewer(self.context)
         self.viewer.back_requested.connect(self._close_viewer)
         self.viewer.search_tag.connect(self._search_from_tag)
         self.viewer.download_requested.connect(self.context.downloads.queue)
-        self.viewer.favorite_toggled.connect(lambda _p: self._refresh_browse_fav_marks())
-        self.stack.addWidget(self.viewer)                # 5
+        self.viewer.favorite_toggled.connect(
+            lambda _p: self._refresh_browse_fav_marks()
+        )
+        self.stack.addWidget(self.viewer)  # 5
 
         self._page_index = {
-            "browse": 0, "favorites": 1, "pools": 2, "history": 3, "downloads": 4,
+            "browse": 0,
+            "favorites": 1,
+            "pools": 2,
+            "history": 3,
+            "downloads": 4,
         }
         return container
 
@@ -206,8 +212,10 @@ class MainWindow(QMainWindow):
             else None
         )
         if cur is not None:
-            if key == "browse" and cur.kind in ("browse", "page") and (
-                cur.kind == "browse" or cur.page == "browse"
+            if (
+                key == "browse"
+                and cur.kind in ("browse", "page")
+                and (cur.kind == "browse" or cur.page == "browse")
             ):
                 # Already on a browse view — just show it, don't add a duplicate.
                 self._navigate("browse")
@@ -373,7 +381,7 @@ class MainWindow(QMainWindow):
         if self._navigating:
             return
         # Drop any forward history, then append.
-        del self._history[self._hist_pos + 1:]
+        del self._history[self._hist_pos + 1 :]
         self._history.append(snap)
         self._hist_pos = len(self._history) - 1
 

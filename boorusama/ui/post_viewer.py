@@ -218,7 +218,8 @@ class PostViewer(QWidget):
         self.fav_btn.setObjectName("Primary" if is_fav else "")
         self.fav_btn.setStyleSheet(
             "background-color:#ff5d6c; color:white; border:none; font-weight:600;"
-            if is_fav else ""
+            if is_fav
+            else ""
         )
 
     def _rebuild_tags(self, post: Post) -> None:

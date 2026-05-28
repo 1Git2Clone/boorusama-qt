@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QCheckBox,
     QComboBox,
@@ -43,7 +42,8 @@ class SettingsDialog(QDialog):
         layout.addWidget(tabs)
 
         buttons = QDialogButtonBox(
-            QDialogButtonBox.StandardButton.Save | QDialogButtonBox.StandardButton.Cancel
+            QDialogButtonBox.StandardButton.Save
+            | QDialogButtonBox.StandardButton.Cancel
         )
         buttons.accepted.connect(self._save)
         buttons.rejected.connect(self.reject)
@@ -136,7 +136,9 @@ class SettingsDialog(QDialog):
         eid = self.f_engine.currentData() or "danbooru"
         cls = available_engines()[eid]
         self.config.sources.append(
-            SourceConfig(engine_id=eid, name=cls.display_name, base_url=cls.default_base_url)
+            SourceConfig(
+                engine_id=eid, name=cls.display_name, base_url=cls.default_base_url
+            )
         )
         self._reload_sources_list()
         self.sources_list.setCurrentRow(len(self.config.sources) - 1)

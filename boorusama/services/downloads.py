@@ -43,14 +43,16 @@ class DownloadItem:
 
 
 def _safe_filename(post: Post) -> str:
-    ext = post.file_ext or (post.file_url.rsplit(".", 1)[-1] if "." in post.file_url else "bin")
+    ext = post.file_ext or (
+        post.file_url.rsplit(".", 1)[-1] if "." in post.file_url else "bin"
+    )
     return f"{post.source_engine}_{post.id}.{ext}"
 
 
 class DownloadManager(QObject):
-    item_added = Signal(object)      # DownloadItem
-    item_updated = Signal(object)    # DownloadItem
-    item_finished = Signal(object)   # DownloadItem
+    item_added = Signal(object)  # DownloadItem
+    item_updated = Signal(object)  # DownloadItem
+    item_finished = Signal(object)  # DownloadItem
 
     def __init__(self, download_dir: Path, parent: QObject | None = None):
         super().__init__(parent)

@@ -52,6 +52,7 @@ def downloads_dir() -> Path:
 @dataclass
 class SourceConfig:
     """A user-configured engine instance shown in the source switcher."""
+
     engine_id: str
     name: str
     base_url: str
@@ -60,17 +61,19 @@ class SourceConfig:
     profile: str = ""  # only for the generic engine
 
     def to_account(self) -> Account:
-        return Account(engine_id=self.engine_id, username=self.username, secret=self.secret)
+        return Account(
+            engine_id=self.engine_id, username=self.username, secret=self.secret
+        )
 
 
 @dataclass
 class AppConfig:
     sources: list[SourceConfig] = field(default_factory=list)
     active_source: int = 0
-    theme: str = "dark"          # "dark" | "light" | "midnight"
+    theme: str = "dark"  # "dark" | "light" | "midnight"
     accent: str = "#009be6"
-    grid_columns: int = 0        # 0 = auto
-    safe_mode: bool = True       # hide explicit/questionable by default
+    grid_columns: int = 0  # 0 = auto
+    safe_mode: bool = True  # hide explicit/questionable by default
     blacklist: list[str] = field(default_factory=list)
     posts_per_page: int = 40
     autocomplete_enabled: bool = True
@@ -128,7 +131,9 @@ class AppConfig:
             SourceConfig("danbooru", "Safebooru", "https://safebooru.donmai.us"),
             SourceConfig("gelbooru", "Gelbooru", "https://gelbooru.com"),
             SourceConfig("generic", "yande.re", "https://yande.re", profile="moebooru"),
-            SourceConfig("generic", "Konachan", "https://konachan.com", profile="moebooru"),
+            SourceConfig(
+                "generic", "Konachan", "https://konachan.com", profile="moebooru"
+            ),
         ]
 
     @classmethod

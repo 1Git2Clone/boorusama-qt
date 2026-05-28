@@ -109,8 +109,10 @@ class GelbooruEngine(BooruEngine):
 
     def _parse_post(self, item: dict) -> Post:
         # Gelbooru gives a flat tag string with no per-category breakdown.
-        tags = [Tag(name=n, category=TagCategory.GENERAL)
-                for n in str(item.get("tags", "")).split()]
+        tags = [
+            Tag(name=n, category=TagCategory.GENERAL)
+            for n in str(item.get("tags", "")).split()
+        ]
         return Post(
             id=int(item.get("id", 0)),
             source_engine=self.id,
@@ -123,7 +125,9 @@ class GelbooruEngine(BooruEngine):
             preview_height=int(item.get("preview_height", 0) or 0),
             rating=Rating.parse(item.get("rating")),
             score=int(item.get("score", 0) or 0),
-            file_ext=(item.get("image", "").rsplit(".", 1)[-1] if item.get("image") else ""),
+            file_ext=(
+                item.get("image", "").rsplit(".", 1)[-1] if item.get("image") else ""
+            ),
             md5=item.get("md5", ""),
             source=item.get("source", ""),
             uploader=item.get("owner", ""),

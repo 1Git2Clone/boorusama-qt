@@ -21,10 +21,11 @@ from .models import Account, Pool, Post, TagSuggestion
 @dataclass(frozen=True, slots=True)
 class EngineCapabilities:
     """Declares which features an engine supports so the UI can adapt."""
+
     search: bool = True
     autocomplete: bool = False
     pools: bool = False
-    favorites: bool = False          # server-side favorites
+    favorites: bool = False  # server-side favorites
     login: bool = False
     notes: bool = False
     artist_commentary: bool = False
@@ -33,6 +34,7 @@ class EngineCapabilities:
 @dataclass(slots=True)
 class EngineConfig:
     """User-editable configuration for an engine instance."""
+
     base_url: str
     name: str = ""
     account: Account | None = None
@@ -84,9 +86,7 @@ class BooruEngine(ABC):
 
     # --- API surface (override in subclasses) ------------------------------
     @abstractmethod
-    def search_posts(
-        self, tags: str, page: int = 1, limit: int = 40
-    ) -> list[Post]:
+    def search_posts(self, tags: str, page: int = 1, limit: int = 40) -> list[Post]:
         """Return a page of posts matching the space-separated *tags* query."""
         raise NotImplementedError
 
@@ -99,7 +99,9 @@ class BooruEngine(ABC):
         results = self.search_posts(f"id:{post_id}", page=1, limit=1)
         return results[0] if results else None
 
-    def search_pools(self, query: str = "", page: int = 1, limit: int = 24) -> list[Pool]:
+    def search_pools(
+        self, query: str = "", page: int = 1, limit: int = 24
+    ) -> list[Pool]:
         return []
 
     def get_pool_posts(self, pool: Pool, page: int = 1, limit: int = 40) -> list[Post]:

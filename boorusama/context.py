@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from PySide6.QtCore import QObject, Signal
 
+from . import config as cfg_paths
 from .config import AppConfig, SourceConfig
 from .core.engine import BooruEngine, EngineConfig
 from .core.imageloader import ImageLoader
@@ -16,13 +17,12 @@ from .core.registry import create_engine, load_builtin_engines
 from .services.blacklist import Blacklist
 from .services.downloads import DownloadManager
 from .services.storage import Storage
-from . import config as cfg_paths
 
 
 class AppContext(QObject):
-    source_changed = Signal()        # active engine swapped
-    settings_changed = Signal()      # theme / blacklist / safe-mode changed
-    favorites_changed = Signal()     # a favorite was added/removed
+    source_changed = Signal()  # active engine swapped
+    settings_changed = Signal()  # theme / blacklist / safe-mode changed
+    favorites_changed = Signal()  # a favorite was added/removed
 
     def __init__(self, parent: QObject | None = None):
         super().__init__(parent)

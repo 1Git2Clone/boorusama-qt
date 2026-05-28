@@ -160,7 +160,9 @@ class PostThumbnail(QFrame):
         self._badge.move(6, self.SIZE - self._badge.height() - 6)
 
         self._fav = QLabel("♥", self)
-        self._fav.setStyleSheet("color: #ff5d6c; font-size: 16px; background: transparent;")
+        self._fav.setStyleSheet(
+            "color: #ff5d6c; font-size: 16px; background: transparent;"
+        )
         self._fav.adjustSize()
         self._fav.move(self.SIZE - self._fav.width() - 8, 6)
         self._fav.setVisible(is_favorite)

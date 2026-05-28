@@ -82,7 +82,9 @@ class DanbooruEngine(BooruEngine):
             name = item.get("value") or item.get("name") or ""
             if not name:
                 continue
-            cat = _AUTOCOMPLETE_CATEGORY.get(item.get("category", ""), TagCategory.GENERAL)
+            cat = _AUTOCOMPLETE_CATEGORY.get(
+                item.get("category", ""), TagCategory.GENERAL
+            )
             out.append(
                 TagSuggestion(
                     name=name,
@@ -95,7 +97,9 @@ class DanbooruEngine(BooruEngine):
         return out
 
     # --- pools -------------------------------------------------------------
-    def search_pools(self, query: str = "", page: int = 1, limit: int = 24) -> list[Pool]:
+    def search_pools(
+        self, query: str = "", page: int = 1, limit: int = 24
+    ) -> list[Pool]:
         params = {
             "search[name_matches]": f"*{query}*" if query else "",
             "search[order]": "post_count",

@@ -46,7 +46,9 @@ class PostGrid(QWidget):
         self.grid = QGridLayout(self.container)
         self.grid.setSpacing(10)
         self.grid.setContentsMargins(12, 12, 12, 12)
-        self.grid.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
+        self.grid.setAlignment(
+            Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter
+        )
         self.scroll_area.setWidget(self.container)
 
         self.empty_label = QLabel("No results.")

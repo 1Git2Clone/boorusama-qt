@@ -32,7 +32,9 @@ class ImageLoader(QObject):
     loaded = Signal(str, QPixmap)
     failed = Signal(str, str)
 
-    def __init__(self, cache_dir: Path, mem_capacity: int = 600, parent: QObject | None = None):
+    def __init__(
+        self, cache_dir: Path, mem_capacity: int = 600, parent: QObject | None = None
+    ):
         super().__init__(parent)
         self.cache_dir = cache_dir
         self.cache_dir.mkdir(parents=True, exist_ok=True)

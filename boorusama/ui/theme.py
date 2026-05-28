@@ -22,23 +22,38 @@ class Palette:
 
 THEMES: dict[str, Palette] = {
     "dark": Palette(
-        bg="#1a1b1e", bg_elevated="#25262b", bg_input="#2c2e33",
-        fg="#e9ecef", fg_muted="#909296", border="#373a40", hover="#2c2e33",
+        bg="#1a1b1e",
+        bg_elevated="#25262b",
+        bg_input="#2c2e33",
+        fg="#e9ecef",
+        fg_muted="#909296",
+        border="#373a40",
+        hover="#2c2e33",
     ),
     "light": Palette(
-        bg="#f8f9fa", bg_elevated="#ffffff", bg_input="#f1f3f5",
-        fg="#212529", fg_muted="#868e96", border="#dee2e6", hover="#e9ecef",
+        bg="#f8f9fa",
+        bg_elevated="#ffffff",
+        bg_input="#f1f3f5",
+        fg="#212529",
+        fg_muted="#868e96",
+        border="#dee2e6",
+        hover="#e9ecef",
     ),
     "midnight": Palette(
-        bg="#0d0f14", bg_elevated="#141821", bg_input="#1b2030",
-        fg="#dfe6f2", fg_muted="#6b7689", border="#222838", hover="#1b2030",
+        bg="#0d0f14",
+        bg_elevated="#141821",
+        bg_input="#1b2030",
+        fg="#dfe6f2",
+        fg_muted="#6b7689",
+        border="#222838",
+        hover="#1b2030",
     ),
 }
 
 
 def _lighten(hex_color: str, amount: int = 20) -> str:
     h = hex_color.lstrip("#")
-    r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+    r, g, b = (int(h[i : i + 2], 16) for i in (0, 2, 4))
     r, g, b = (min(255, c + amount) for c in (r, g, b))
     return f"#{r:02x}{g:02x}{b:02x}"
 

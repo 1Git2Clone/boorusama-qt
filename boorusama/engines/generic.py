@@ -102,7 +102,9 @@ class GenericJsonEngine(BooruEngine):
             data = data.get(results_key, [])
         if not isinstance(data, list):
             return []
-        return [self._parse(item, prof) for item in data if _dig(item, prof["fields"]["id"])]
+        return [
+            self._parse(item, prof) for item in data if _dig(item, prof["fields"]["id"])
+        ]
 
     def _parse(self, item: dict, prof: dict) -> Post:
         f = prof["fields"]

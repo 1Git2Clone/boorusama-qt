@@ -45,10 +45,15 @@ class Rating(str, Enum):
         v = value.strip().lower()
         # Accept both single-letter and full-word forms.
         mapping = {
-            "g": cls.GENERAL, "general": cls.GENERAL, "safe": cls.GENERAL,
-            "s": cls.SENSITIVE, "sensitive": cls.SENSITIVE,
-            "q": cls.QUESTIONABLE, "questionable": cls.QUESTIONABLE,
-            "e": cls.EXPLICIT, "explicit": cls.EXPLICIT,
+            "g": cls.GENERAL,
+            "general": cls.GENERAL,
+            "safe": cls.GENERAL,
+            "s": cls.SENSITIVE,
+            "sensitive": cls.SENSITIVE,
+            "q": cls.QUESTIONABLE,
+            "questionable": cls.QUESTIONABLE,
+            "e": cls.EXPLICIT,
+            "explicit": cls.EXPLICIT,
         }
         return mapping.get(v, cls.UNKNOWN)
 
@@ -77,6 +82,7 @@ class Tag:
 @dataclass(slots=True)
 class TagSuggestion:
     """An autocomplete result."""
+
     name: str
     label: str
     category: TagCategory = TagCategory.GENERAL
@@ -92,9 +98,9 @@ class Post:
     source_engine: str = ""
 
     # Media URLs at three sizes; any may be empty if the backend lacks it.
-    preview_url: str = ""   # small thumbnail
-    sample_url: str = ""    # medium / sample
-    file_url: str = ""      # original / full resolution
+    preview_url: str = ""  # small thumbnail
+    sample_url: str = ""  # medium / sample
+    file_url: str = ""  # original / full resolution
 
     width: int = 0
     height: int = 0
@@ -149,6 +155,7 @@ class Post:
 @dataclass(slots=True)
 class Pool:
     """A named, ordered collection of posts."""
+
     id: int
     name: str
     description: str = ""
@@ -166,6 +173,7 @@ class Pool:
 @dataclass(slots=True)
 class Account:
     """Per-engine credentials. The 'secret' is an API key/password depending on site."""
+
     engine_id: str
     username: str = ""
     secret: str = ""
