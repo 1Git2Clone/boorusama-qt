@@ -1,0 +1,46 @@
+name: ✨ Feature request
+description: Suggest an idea or improvement
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What are you trying to do? What's missing or frustrating today?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What would you like to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches or workarounds you've thought about.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Search / autocomplete
+        - Grid / browsing
+        - Post viewer
+        - Favorites / history
+        - Pools
+        - Downloads
+        - Settings / theming
+        - New booru engine / backend
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and this isn't a duplicate.
+          required: true

@@ -1,0 +1,75 @@
+name: 🐞 Bug report
+description: Something isn't working as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for the report! Please fill in as much as you can.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug, including what you expected instead.
+      placeholder: When I … I expected … but instead …
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Set source to …
+        2. Search for …
+        3. Click …
+        4. See error
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Source / engine
+      description: Which backend were you using?
+      options:
+        - Danbooru
+        - Safebooru (Danbooru)
+        - Gelbooru
+        - yande.re / Konachan (generic moebooru)
+        - Other / custom
+        - Not applicable
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      description: Shown at the bottom of the sidebar (e.g. v0.1.0).
+      placeholder: v0.1.0
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS / desktop
+      placeholder: "e.g. Arch Linux + Hyprland, Windows 11, macOS 14"
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "e.g. 3.12.4"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / traceback
+      description: Console output when launching with `python main.py`. Will be rendered as code.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and this isn't a duplicate.
+          required: true
