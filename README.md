@@ -8,6 +8,8 @@ It's a multi-backend image-board browser with a pluggable engine architecture:
 adding a new booru is a single module (or, for many sites, just a config
 profile).
 
+![Boorusama-Qt browsing Danbooru](docs/screenshot.png)
+
 ## Features
 
 - 🔌 **Pluggable engines** — Danbooru, Gelbooru, and a config-driven *generic*
