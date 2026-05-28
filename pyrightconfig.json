@@ -1,0 +1,6 @@
+{
+  "include": ["boorusama", "main.py"],
+  "extraPaths": ["."],
+  "reportMissingImports": "warning",
+  "pythonVersion": "3.11"
+}
