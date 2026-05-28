@@ -10,6 +10,12 @@ profile).
 
 ![Boorusama-Qt browsing Danbooru](docs/screenshot.png)
 
+*Browse view — infinite-scroll grid with tag search.*
+
+![Boorusama-Qt post viewer](docs/viewer.png)
+
+*Post viewer — full image with category-grouped, clickable tags and metadata.*
+
 ## Features
 
 - 🔌 **Pluggable engines** — Danbooru, Gelbooru, and a config-driven *generic*
