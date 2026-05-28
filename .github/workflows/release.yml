@@ -69,7 +69,9 @@ jobs:
           path: dist
       - uses: astral-sh/setup-uv@v6
       - name: Publish
-        run: uv publish --trusted-publishing always
+        # --check-url makes re-runs idempotent: files already on the index are
+        # skipped instead of failing the job (e.g. when a tag is moved/re-pushed).
+        run: uv publish --trusted-publishing always --check-url https://pypi.org/simple/
 
   testpypi:
     name: Publish to TestPyPI (manual)
@@ -88,4 +90,4 @@ jobs:
           path: dist
       - uses: astral-sh/setup-uv@v6
       - name: Publish to TestPyPI
-        run: uv publish --trusted-publishing always --publish-url https://test.pypi.org/legacy/
+        run: uv publish --trusted-publishing always --publish-url https://test.pypi.org/legacy/ --check-url https://test.pypi.org/simple/
